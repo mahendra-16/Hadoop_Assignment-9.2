@@ -1,0 +1,19 @@
+a)
+std = load '/pigtest/students.txt' using PigStorage(',') as (name:chararray, col_u:chararray, dob:chararray, stream:chararray, grade:double, state:chararray, city:chararray);
+
+dump std;
+
+filter_std = FILTER std BY grade < 5.0;
+
+b)
+std_filter = FILTER std BY state == 'alaska';
+gup_std = GROUP std_filter BY name;
+std_forech = FOREACH gup_std GENERATE std_filter.name, std_filter,state;
+dump std_forech;
+
+c)
+std_filterr = FILTER std BY state == 'alabama';
+coll_filter = FILTER std_filterr BY col_u == 'goverenment';
+dump coll_filter;
+
+
